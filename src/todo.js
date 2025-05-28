@@ -6,4 +6,12 @@ export class ToDo {
         this.priority = priority;
         this.isComplete = false;
     }
+
+    toggleComplete() {
+        this.isComplete = !this.isComplete;
+    }
+
+    changePriority(newPriority) {
+        this.priority = newPriority;
+    }
 }
