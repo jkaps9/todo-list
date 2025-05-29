@@ -29,43 +29,44 @@ const displayController = (function () {
         clearList(todoList);
 
         projectArr.forEach(project => {
-            const header = document.createElement("h4");
-            header.textContent = project.name;
-            todoList.appendChild(header);
+            if (project.items.length > 0) {
+                const header = document.createElement("h4");
+                header.textContent = project.name;
+                todoList.appendChild(header);
 
-            project.items.forEach(todo => {
-                if (!todo.isComplete) {
-                    const toDoCard = document.createElement("div");
-                    toDoCard.classList.add("todo-item");
-                    toDoCard.classList.add(`priority-${todo.priority.toLowerCase()}`);
+                project.items.forEach(todo => {
+                    if (!todo.isComplete) {
+                        const toDoCard = document.createElement("div");
+                        toDoCard.classList.add("todo-item");
+                        toDoCard.classList.add(`priority-${todo.priority.toLowerCase()}`);
 
-                    const checkBox = document.createElement("button");
-                    checkBox.setAttribute("id", todo.id);
-                    checkBox.classList.add("todo-isComplete");
-                    checkBox.addEventListener('click', () => {
-                        todo.toggleComplete();
-                    });
+                        const checkBox = document.createElement("button");
+                        checkBox.setAttribute("id", todo.id);
+                        checkBox.classList.add("todo-isComplete");
+                        checkBox.addEventListener('click', () => {
+                            todo.toggleComplete();
+                        });
 
-                    const title = document.createElement("p");
-                    title.classList.add("todo-title");
-                    title.textContent = todo.title;
+                        const title = document.createElement("p");
+                        title.classList.add("todo-title");
+                        title.textContent = todo.title;
 
-                    const dueDate = document.createElement("p");
-                    dueDate.classList.add("todo-dueDate");
+                        const dueDate = document.createElement("p");
+                        dueDate.classList.add("todo-dueDate");
 
-                    const month = todo.dueDate.getMonth() + 1;
-                    const day = todo.dueDate.getDate();
-                    const year = todo.dueDate.getFullYear();
+                        const month = todo.dueDate.getMonth() + 1;
+                        const day = todo.dueDate.getDate();
+                        const year = todo.dueDate.getFullYear();
 
-                    dueDate.textContent = `${month}/${day}/${year}`;
+                        dueDate.textContent = `${month}/${day}/${year}`;
 
-                    toDoCard.appendChild(checkBox);
-                    toDoCard.appendChild(title);
-                    toDoCard.appendChild(dueDate);
-                    todoList.appendChild(toDoCard);
-                }
-            });
-
+                        toDoCard.appendChild(checkBox);
+                        toDoCard.appendChild(title);
+                        toDoCard.appendChild(dueDate);
+                        todoList.appendChild(toDoCard);
+                    }
+                });
+            }
         });
     };
 
@@ -81,6 +82,7 @@ const displayController = (function () {
     };
 
     const setFormProjects = (projectArr) => {
+        clearList(formProjects);
         projectArr.forEach(project => {
             const option = document.createElement("option");
             option.value = project.id;
@@ -122,7 +124,17 @@ const displayController = (function () {
         });
     };
 
-    return { updateProjectList, updateTodoList, setTodaysDate, setFormProjects, addTaskButtonClick, closeButtonClick, createTaskClick };
+    const addProjectButtonClick = (projectManager) => {
+        const addProjectButton = document.querySelector("#add-project");
+        addProjectButton.addEventListener('click', () => {
+            const title = prompt("Project Title", "New Project");
+            projectManager.createProject(title);
+            updateProjectList(projectManager.projects);
+            setFormProjects(projectManager.projects);
+        });
+    };
+
+    return { updateProjectList, updateTodoList, setTodaysDate, setFormProjects, addTaskButtonClick, closeButtonClick, createTaskClick, addProjectButtonClick };
 })();
 
 export default displayController;

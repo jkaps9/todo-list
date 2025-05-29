@@ -59,7 +59,7 @@ const projectManager = (function () {
         }
     };
 
-    return { projects, addToDo };
+    return { projects, addToDo, createProject };
 })();
 
 export default projectManager;

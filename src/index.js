@@ -12,3 +12,4 @@ displayController.createTaskClick(projectManager);
 displayController.updateProjectList(projectManager.projects);
 displayController.updateTodoList(projectManager.projects);
 displayController.addTaskButtonClick();
+displayController.addProjectButtonClick(projectManager);
