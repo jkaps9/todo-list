@@ -77,6 +77,22 @@ aside .project-btn:hover {
     background-color: rgba(150, 150, 150, 0.1);
 }
 
+#add-project {
+    background-image: url('../src/add_circle.svg');
+    background-position: center;
+    background-size: cover;
+    border: none;
+    height: 24px;
+    width: 24px;
+    border-radius: 10px;
+}
+
+aside div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 /* Main */
 main {
     position: relative;
