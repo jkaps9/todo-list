@@ -3,7 +3,7 @@ import { ToDo } from "./todo.js";
 import { Project } from "./project.js";
 import { displayController } from "./displayController.js";
 
-const toDoItem = new ToDo("Sleep", "Go to sleep", new Date(2025, 4, 27), "High");
+const toDoItem = new ToDo("Todo Title", "Todo Description", new Date(2025, 4, 27), "High");
 console.log(toDoItem);
 
 toDoItem.toggleComplete();
@@ -24,7 +24,6 @@ console.log(defaultProject);
 const projects = [];
 projects.push(defaultProject);
 
-displayController.clearProjectList();
 displayController.updateProjectList(projects);
 
 for (let i = 2; i <= 6; i++) {
@@ -35,3 +34,6 @@ for (let i = 2; i <= 6; i++) {
 displayController.updateProjectList(projects);
 
 console.log(projects);
+
+defaultProject.addItem(toDoItem);
+displayController.updateTodoList(projects);

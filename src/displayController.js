@@ -2,6 +2,7 @@ import { Project } from "./project";
 
 export const displayController = (function () {
     const projectList = document.querySelector("#project-list");
+    const todoList = document.querySelector("#todo-list");
 
     const clearList = (list) => {
         while (list.firstChild) {
@@ -9,9 +10,9 @@ export const displayController = (function () {
         }
     };
 
-    const updateProjectList = (arr) => {
+    const updateProjectList = (projectArr) => {
         clearList(projectList);
-        arr.forEach(element => {
+        projectArr.forEach(element => {
             const listItem = document.createElement("li");
             const button = document.createElement("button");
             button.classList.add("project-btn");
@@ -24,6 +25,7 @@ export const displayController = (function () {
     const makeTodoCard = (todo) => {
         const toDoCard = document.createElement("div");
         toDoCard.classList.add("todo-item");
+        toDoCard.classList.add(`priority-${todo.priority.toLowerCase()}`);
 
         const checkBox = document.createElement("input");
         checkBox.setAttribute("type", "checkbox");
@@ -35,14 +37,36 @@ export const displayController = (function () {
         checkBoxLabel.classList.add("todo-title");
         checkBoxLabel.textContent = todo.title;
 
+        const dueDate = document.createElement("p");
+        dueDate.classList.add("todo-dueDate");
+
+        const month = todo.dueDate.getMonth() + 1;
+        const day = todo.dueDate.getDate();
+        const year = todo.dueDate.getFullYear();
+
+        dueDate.textContent = `${month}/${day}/${year}`;
+
         toDoCard.appendChild(checkBox);
         toDoCard.appendChild(checkBoxLabel);
+        toDoCard.appendChild(dueDate);
 
         return toDoCard;
     };
 
-    const updateTodoList = (projects) => {
+    const updateTodoList = (projectArr) => {
+        clearList(todoList);
 
+        projectArr.forEach(project => {
+            const header = document.createElement("h4");
+            header.textContent = project.name;
+            todoList.appendChild(header);
+
+            project.items.forEach(todo => {
+                const todoCard = makeTodoCard(todo);
+                todoList.appendChild(todoCard);
+            });
+
+        });
     };
 
     return { updateProjectList, updateTodoList };
