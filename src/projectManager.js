@@ -17,10 +17,42 @@ import displayController from "./displayController.js";
 const projectManager = (function () {
     const projects = [];
 
+    const getIndex = (arr, id) => {
+        return arr.map(function (e) {
+            return e.id;
+        }).indexOf(id);
+    };
+
     const createProject = (title) => {
         projects.push(new Project(title));
     };
 
+    const removeProject = (projectID) => {
+        const index = getIndex(projects, projectID);
+        if (index !== -1) {
+            projects.splice(index, 1);
+        }
+    };
+
+    const addToDo = (projectID, title, description, dueDate, priority) => {
+        const index = getIndex(projects, projectID);
+        if (index !== -1) {
+            projects[index].addItem(new ToDo(title, description, dueDate, priority));
+        } else {
+            console.log(`Project with ID ${projectID} does not exist.`);
+        }
+    };
+
+    const removeToDo = (projectID, todoID) => {
+        const projIndex = getIndex(projects, projectID);
+
+        if (projIndex !== -1) {
+            const todoIndex = getIndex(projects[projIndex].items, todoID);
+            if (todoIndex !== -1) {
+                projects[projIndex].removeItem(projects[projIndex].items[todoIndex]);
+            }
+        }
+    };
 
 })();
 
