@@ -10,6 +10,10 @@ body {
     min-height: 100vh;
 
     --background-color: #ffffff;
+    --text-color: #000000;
+
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 body>* {
@@ -36,8 +40,11 @@ li {
 
 /* Sidebar */
 aside {
+    min-width: 200px;
     padding-left: 24px;
     border-right: 1px solid rgba(150, 150, 150, 0.3);
+
+    background-color: var(--background-color);
 }
 
 aside #add-task {
@@ -189,6 +196,7 @@ div.todo-item.priority-medium {
 
     input {
         appearance: none;
+        outline: none;
     }
 
     input,
@@ -196,10 +204,15 @@ div.todo-item.priority-medium {
         width: 175px;
         background: none;
         border: 1px solid rgba(150, 150, 150, 0.5);
+        padding: 4px;
     }
 
     select {
         cursor: pointer;
+    }
+
+    input:focus {
+        border: 2px solid blue;
     }
 
     button {

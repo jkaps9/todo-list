@@ -18,7 +18,7 @@ const projectManager = (function () {
 
     // Create a default project if projects is empty
     if (projects.length === 0) {
-        projects.push(new Project("Default Project"));
+        projects.push(new Project("My Tasks"));
     }
 
     const getIndex = (arr, id) => {
