@@ -150,16 +150,6 @@ div.todo-item.priority-medium {
     font-style: italic;
 }
 
-.form-container {
-    position: absolute;
-    top: 24px;
-    left: 8px;
-
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 2px;
-    padding: 48px 12px 12px;
-}
 
 .btn {
     padding: 8px 12px;
@@ -173,13 +163,25 @@ div.todo-item.priority-medium {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-#close-form {
+
+.form-container {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    padding: 0;
-    border: none;
-    font-weight: bold;
+    top: 24px;
+    left: 8px;
+
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 48px 24px 24px;
+
+    #close-form {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        padding: 0;
+        border: none;
+        font-weight: bold;
+    }
 }
 
 #new-task-form {
