@@ -21,6 +21,7 @@ for (let i = 2; i <= 6; i++) {
 // FORM FUNCTIONS
 displayController.setTodaysDate();
 displayController.setFormProjects(projects);
+displayController.closeButtonClick();
 
 displayController.updateProjectList(projects);
 displayController.updateTodoList(projects);

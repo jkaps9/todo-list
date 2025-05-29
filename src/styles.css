@@ -139,7 +139,24 @@ div.todo-item.priority-medium {
     background-color: white;
     border: 1px solid black;
     border-radius: 2px;
-    padding: 24px 12px 12px;
+    padding: 48px 12px 12px;
+}
+
+.btn {
+    padding: 8px 12px;
+    appearance: none;
+    background: none;
+    border: 1px solid rgba(150, 150, 150, 0.5);
+}
+
+#close-form {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 0;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 #new-task-form {
@@ -164,10 +181,6 @@ div.todo-item.priority-medium {
     button {
         margin-top: 8px;
         align-self: flex-end;
-        padding: 8px 12px;
-        appearance: none;
-        background: none;
-        border: 1px solid rgba(150, 150, 150, 0.5);
     }
 }
 

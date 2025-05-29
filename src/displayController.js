@@ -93,5 +93,12 @@ export const displayController = (function () {
         });
     };
 
-    return { updateProjectList, updateTodoList, setTodaysDate, setFormProjects, addTaskButtonClick };
+    const closeButtonClick = () => {
+        const closeButton = document.querySelector("#close-form");
+        closeButton.addEventListener('click', () => {
+            newTaskFormContainer.classList.add("hidden");
+        });
+    };
+
+    return { updateProjectList, updateTodoList, setTodaysDate, setFormProjects, addTaskButtonClick, closeButtonClick };
 })();
