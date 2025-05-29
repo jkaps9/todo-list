@@ -193,13 +193,11 @@ const displayController = (function () {
 
         const updateButton = document.querySelector("#update-todo");
         updateButton.addEventListener('click', () => {
-
             const newTitle = todoDetailFormContainer.querySelector("#todo-title").value;
             const newDescription = todoDetailFormContainer.querySelector("#todo-description").value;
             const dueDt = todoDetailFormContainer.querySelector("#todo-due-date").value;
             const newDueDate = new Date(Number(dueDt.slice(0, 4)), Number(dueDt.slice(5, 7)) - 1, Number(dueDt.slice(8, 10)));
             const newPriority = todoDetailFormContainer.querySelector("#todo-priority").value;
-
             projectManager.updateToDo(todo.id, newTitle, newDescription, newDueDate, newPriority);
             updateTodoList();
         });
