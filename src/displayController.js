@@ -135,7 +135,14 @@ const displayController = (function () {
         });
     };
 
-    return { updateProjectList, updateTodoList, setTodaysDate, setFormProjects, addTaskButtonClick, closeButtonClick, createTaskClick, addProjectButtonClick };
+    const initialize = () => {
+        updateProjectList();
+        updateTodoList();
+        addTaskButtonClick();
+        addProjectButtonClick();
+    };
+
+    return { initialize, setTodaysDate, setFormProjects, closeButtonClick, createTaskClick };
 })();
 
 export default displayController;
