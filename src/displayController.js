@@ -27,8 +27,18 @@ export const displayController = (function () {
 
         const checkBox = document.createElement("input");
         checkBox.setAttribute("type", "checkbox");
-        checkBox.setAttribute("id", todo.title);
+        checkBox.setAttribute("id", todo.id);
         checkBox.setAttribute("name", todo.title);
+
+        const checkBoxLabel = document.createElement("label");
+        checkBoxLabel.setAttribute("for", todo.id);
+        checkBoxLabel.classList.add("todo-title");
+        checkBoxLabel.textContent = todo.title;
+
+        toDoCard.appendChild(checkBox);
+        toDoCard.appendChild(checkBoxLabel);
+
+        return toDoCard;
     };
 
     return { clearProjectList, updateProjectList };
