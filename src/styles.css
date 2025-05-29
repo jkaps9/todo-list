@@ -139,10 +139,14 @@ div.todo-item.priority-medium {
     background-color: white;
     border: 1px solid black;
     border-radius: 2px;
-    padding: 24px 12px;
+    padding: 24px 12px 12px;
 }
 
 #new-task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
     div {
         display: grid;
         grid-template-columns: 1fr auto;
@@ -152,5 +156,17 @@ div.todo-item.priority-medium {
     input,
     select {
         width: 175px;
+        appearance: none;
+        background: none;
+        border: 1px solid rgba(150, 150, 150, 0.5);
+    }
+
+    button {
+        margin-top: 8px;
+        align-self: flex-end;
+        padding: 8px 12px;
+        appearance: none;
+        background: none;
+        border: 1px solid rgba(150, 150, 150, 0.5);
     }
 }
