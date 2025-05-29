@@ -59,7 +59,21 @@ const projectManager = (function () {
         }
     };
 
-    return { projects, addToDo, createProject };
+    const updateToDo = (todoID, newTitle, newDescription, newDueDate, newPriority) => {
+        let todoIndex = -1;
+        for (let i = 0; i < projects.length; i++) {
+            todoIndex = getIndex(projects[i].items, todoID);
+            if (todoIndex >= 0) {
+                projects[i].items[todoIndex].setTitle(newTitle);
+                projects[i].items[todoIndex].setDescription(newDescription);
+                projects[i].items[todoIndex].setDueDate(newDueDate);
+                projects[i].items[todoIndex].setPriority(newPriority);
+                break;
+            }
+        }
+    };
+
+    return { projects, addToDo, createProject, updateToDo };
 })();
 
 export default projectManager;

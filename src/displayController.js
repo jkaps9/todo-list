@@ -3,9 +3,11 @@ import projectManager from "./projectManager";
 const displayController = (function () {
     const projectList = document.querySelector("#project-list");
     const todoList = document.querySelector("#todo-list");
-    const newTaskFormContainer = document.querySelector(".form-container");
+    const newTaskFormContainer = document.querySelector("#new-task-container");
     const newTaskForm = document.querySelector("#new-task-form");
     const formProjects = document.querySelector("#project");
+
+    const todoDetailFormContainer = document.querySelector("#todo-detail-container");
 
     const clearList = (list) => {
         while (list.firstChild) {
@@ -47,7 +49,6 @@ const displayController = (function () {
                         toDoCard.classList.add(`priority-${todo.priority.toLowerCase()}`);
 
                         const checkBox = document.createElement("button");
-                        checkBox.setAttribute("id", todo.id);
                         checkBox.classList.add("todo-isComplete");
                         checkBox.addEventListener('click', () => {
                             todo.toggleComplete();
@@ -57,6 +58,10 @@ const displayController = (function () {
                         const title = document.createElement("p");
                         title.classList.add("todo-title");
                         title.textContent = todo.title;
+                        title.addEventListener('click', () => {
+                            todoDetailFormContainer.classList.remove("hidden");
+                            todoFormSetup(todo);
+                        });
 
                         const dueDate = document.createElement("p");
                         dueDate.classList.add("todo-dueDate");
@@ -116,7 +121,7 @@ const displayController = (function () {
 
     const createTaskClick = () => {
         const createTaskBtn = document.querySelector("#create-task");
-        formSubmit(projectManager);
+        formSubmit();
         createTaskBtn.addEventListener('click', (e) => {
 
         });
@@ -166,6 +171,38 @@ const displayController = (function () {
         setFormProjects();
         closeButtonClick();
         createTaskClick();
+    };
+
+    const todoFormSetup = (todo) => {
+        const closeButton = document.querySelector("#close-todo-form");
+        closeButton.addEventListener('click', () => {
+            todoDetailFormContainer.classList.add("hidden");
+        });
+
+        todoDetailFormContainer.querySelector("#todo-title").value = todo.title;
+        todoDetailFormContainer.querySelector("#todo-description").value = todo.description;
+
+        const dueDate = todo.dueDate;
+        let month = dueDate.getMonth() < 9 ? `0` : ``;
+        month += `${dueDate.getMonth() + 1}`;
+        const day = dueDate.getDate();
+        const year = dueDate.getFullYear();
+        todoDetailFormContainer.querySelector("#todo-due-date").value = `${year}-${month}-${day}`;
+
+        todoDetailFormContainer.querySelector("#todo-priority").value = todo.priority;
+
+        const updateButton = document.querySelector("#update-todo");
+        updateButton.addEventListener('click', () => {
+
+            const newTitle = todoDetailFormContainer.querySelector("#todo-title").value;
+            const newDescription = todoDetailFormContainer.querySelector("#todo-description").value;
+            const dueDt = todoDetailFormContainer.querySelector("#todo-due-date").value;
+            const newDueDate = new Date(Number(dueDt.slice(0, 4)), Number(dueDt.slice(5, 7)) - 1, Number(dueDt.slice(8, 10)));
+            const newPriority = todoDetailFormContainer.querySelector("#todo-priority").value;
+
+            projectManager.updateToDo(todo.id, newTitle, newDescription, newDueDate, newPriority);
+            updateTodoList();
+        });
     };
 
     return { initialize };
