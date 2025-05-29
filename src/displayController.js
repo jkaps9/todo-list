@@ -27,15 +27,13 @@ export const displayController = (function () {
         toDoCard.classList.add("todo-item");
         toDoCard.classList.add(`priority-${todo.priority.toLowerCase()}`);
 
-        const checkBox = document.createElement("input");
-        checkBox.setAttribute("type", "checkbox");
+        const checkBox = document.createElement("button");
         checkBox.setAttribute("id", todo.id);
-        checkBox.setAttribute("name", todo.title);
+        checkBox.classList.add("todo-isComplete");
 
-        const checkBoxLabel = document.createElement("label");
-        checkBoxLabel.setAttribute("for", todo.id);
-        checkBoxLabel.classList.add("todo-title");
-        checkBoxLabel.textContent = todo.title;
+        const title = document.createElement("p");
+        title.classList.add("todo-title");
+        title.textContent = todo.title;
 
         const dueDate = document.createElement("p");
         dueDate.classList.add("todo-dueDate");
@@ -47,7 +45,7 @@ export const displayController = (function () {
         dueDate.textContent = `${month}/${day}/${year}`;
 
         toDoCard.appendChild(checkBox);
-        toDoCard.appendChild(checkBoxLabel);
+        toDoCard.appendChild(title);
         toDoCard.appendChild(dueDate);
 
         return toDoCard;
