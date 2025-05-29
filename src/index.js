@@ -3,25 +3,8 @@ import { ToDo } from "./todo.js";
 import { Project } from "./project.js";
 import { displayController } from "./displayController.js";
 
-const toDoItem = new ToDo("Todo Title", "Todo Description", new Date(2025, 4, 27), "High");
-console.log(toDoItem);
-
-toDoItem.toggleComplete();
-console.log(toDoItem);
-
-toDoItem.changePriority("Low");
-console.log(toDoItem);
-
-const defaultProject = new Project("My To Dos");
-console.log(defaultProject);
-
-defaultProject.addItem(toDoItem);
-console.log(defaultProject);
-
-defaultProject.removeItem(toDoItem);
-console.log(defaultProject);
-
 const projects = [];
+const defaultProject = new Project("My To Dos");
 projects.push(defaultProject);
 
 displayController.updateProjectList(projects);
@@ -29,11 +12,12 @@ displayController.updateProjectList(projects);
 for (let i = 2; i <= 6; i++) {
     const newProj = new Project(`Project ${i}`);
     projects.push(newProj);
+    const rand = Math.floor(Math.random() * 6) + 2;
+    for (let j = 1; j < rand; j++) {
+        const toDoItem = new ToDo(`Task ${j}`, "Todo Description", new Date(2025, 4, 30), "High");
+        projects[i - 1].addItem(toDoItem);
+    }
 }
 
 displayController.updateProjectList(projects);
-
-console.log(projects);
-
-defaultProject.addItem(toDoItem);
 displayController.updateTodoList(projects);
