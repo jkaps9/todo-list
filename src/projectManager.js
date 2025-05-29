@@ -21,13 +21,6 @@ const projectManager = (function () {
         projects.push(new Project("Default Project"));
     }
 
-    // Create default todos for testing purposes
-    const rand = Math.floor(Math.random() * 3) + 1;
-    for (let j = 1; j < rand; j++) {
-        const toDoItem = new ToDo(`Task ${j}`, "Todo Description", new Date(2025, 4, 30), "High");
-        projects[0].addItem(toDoItem);
-    }
-
     const getIndex = (arr, id) => {
         return arr.map(function (e) {
             return e.id;
@@ -48,7 +41,8 @@ const projectManager = (function () {
     const addToDo = (projectID, title, description, dueDate, priority) => {
         const index = getIndex(projects, projectID);
         if (index !== -1) {
-            projects[index].addItem(new ToDo(title, description, dueDate, priority));
+            const dueDt = new Date(Number(dueDate.slice(0, 4)), Number(dueDate.slice(5, 7)) - 1, Number(dueDate.slice(8, 10)));
+            projects[index].addItem(new ToDo(title, description, dueDt, priority));
         } else {
             console.log(`Project with ID ${projectID} does not exist.`);
         }
@@ -65,7 +59,7 @@ const projectManager = (function () {
         }
     };
 
-    return { projects };
+    return { projects, addToDo };
 })();
 
 export default projectManager;

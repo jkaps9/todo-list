@@ -1,7 +1,10 @@
+import projectManager from "./projectManager";
+
 const displayController = (function () {
     const projectList = document.querySelector("#project-list");
     const todoList = document.querySelector("#todo-list");
     const newTaskFormContainer = document.querySelector(".form-container");
+    const newTaskForm = document.querySelector("#new-task-form");
     const formProjects = document.querySelector("#project");
 
     const clearList = (list) => {
@@ -80,7 +83,7 @@ const displayController = (function () {
     const setFormProjects = (projectArr) => {
         projectArr.forEach(project => {
             const option = document.createElement("option");
-            option.value = project.name;
+            option.value = project.id;
             option.textContent = project.name;
             formProjects.appendChild(option);
         });
@@ -100,7 +103,26 @@ const displayController = (function () {
         });
     };
 
-    return { updateProjectList, updateTodoList, setTodaysDate, setFormProjects, addTaskButtonClick, closeButtonClick };
+    const createTaskClick = (projectManager) => {
+        const createTaskBtn = document.querySelector("#create-task");
+        formSubmit(projectManager);
+        createTaskBtn.addEventListener('click', (e) => {
+
+        });
+    };
+
+    const formSubmit = (projectManager) => {
+        newTaskForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const formData = new FormData(newTaskForm);
+            projectManager.addToDo(formData.get("project-id"), formData.get("title"), formData.get("description"), formData.get("due-date"), formData.get("priority"));
+            newTaskForm.reset();
+            setTodaysDate();
+            updateTodoList(projectManager.projects);
+        });
+    };
+
+    return { updateProjectList, updateTodoList, setTodaysDate, setFormProjects, addTaskButtonClick, closeButtonClick, createTaskClick };
 })();
 
 export default displayController;
