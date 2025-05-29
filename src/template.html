@@ -25,7 +25,9 @@
             </div>
         </section>
         <div class="form-container hidden">
-            <button id="close-form" class="btn">X</button>
+            <div class="buttons form-buttons">
+                <button id="close-task-form" class="btn close-form"></button>
+            </div>
             <form action="" id="new-task-form">
                 <div>
                     <label for="project">Project</label>
@@ -53,6 +55,39 @@
                     </select>
                 </div>
                 <button id="create-task" class="btn">Add Task</button>
+            </form>
+        </div>
+
+        <div class="form-container hidden">
+            <div class="buttons form-buttons">
+                <button id="delete-todo" class="btn"></button>
+                <button id="close-todo-form" class="btn close-form"></button>
+            </div>
+            <form action="" id="view-edit-todo">
+                <div>
+                    <label for="todo-title">Title</label>
+                    <input type="text" id="todo-title" name="todo-title" placeholder="Title" required>
+                </div>
+                <div>
+                    <label for="todo-description">Description</label>
+                    <input type="text" id="todo-description" name="todo-description" placeholder="Description" required>
+                </div>
+                <div>
+                    <label for="todo-due-date">Due Date</label>
+                    <input type="date" id="todo-due-date" name="todo-due-date">
+                </div>
+                <div>
+                    <label for="todo-priority">Priority</label>
+                    <select name="todo-priority" id="todo-priority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="buttons">
+                    <button type="button" id="mark-complete" class="btn">Mark Complete</button>
+                    <button type="button" id="update-todo" class="btn">Update</button>
+                </div>
             </form>
         </div>
     </main>

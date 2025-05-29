@@ -108,7 +108,7 @@ const displayController = (function () {
     };
 
     const closeButtonClick = () => {
-        const closeButton = document.querySelector("#close-form");
+        const closeButton = document.querySelector("#close-task-form");
         closeButton.addEventListener('click', () => {
             newTaskFormContainer.classList.add("hidden");
         });

@@ -180,17 +180,33 @@ div.todo-item.priority-medium {
     border-radius: 2px;
     padding: 48px 24px 24px;
 
-    #close-form {
+    .form-buttons {
         position: absolute;
         top: 8px;
         right: 8px;
+        display: flex;
+        gap: 8px;
+    }
+
+    .close-form {
         padding: 0;
         border: none;
-        font-weight: bold;
+        background-image: url('../src/close.svg');
+        height: 24px;
+        width: 24px;
+    }
+
+    #delete-todo {
+        padding: 0;
+        border: none;
+        background-image: url('../src/delete.svg');
+        height: 24px;
+        width: 24px;
     }
 }
 
-#new-task-form {
+#new-task-form,
+#view-edit-todo {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -226,6 +242,16 @@ div.todo-item.priority-medium {
     button {
         margin-top: 8px;
         align-self: flex-end;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        gap: 36px;
+    }
+
+    .buttons>* {
+        flex: 1;
     }
 }
 
