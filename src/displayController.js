@@ -31,9 +31,7 @@ const displayController = (function () {
         projectManager.projects.forEach(project => {
 
             const filteredItems = project.items.filter((item) => !item.isComplete);
-
-            console.log(filteredItems);
-            if (project.items.length > 0) {
+            if (filteredItems.length > 0) {
                 const header = document.createElement("h4");
                 header.textContent = project.name;
                 todoList.appendChild(header);
