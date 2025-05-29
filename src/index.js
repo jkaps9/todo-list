@@ -27,4 +27,11 @@ projects.push(defaultProject);
 displayController.clearProjectList();
 displayController.updateProjectList(projects);
 
+for (let i = 2; i <= 6; i++) {
+    const newProj = new Project(`Project ${i}`);
+    projects.push(newProj);
+}
+
+displayController.updateProjectList(projects);
+
 console.log(projects);

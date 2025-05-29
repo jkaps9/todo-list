@@ -10,6 +10,7 @@ export const displayController = (function () {
     };
 
     const updateProjectList = (arr) => {
+        clearProjectList();
         arr.forEach(element => {
             const listItem = document.createElement("li");
             const button = document.createElement("button");
