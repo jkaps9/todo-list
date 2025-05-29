@@ -119,10 +119,12 @@ const displayController = (function () {
         newTaskForm.addEventListener("submit", (e) => {
             e.preventDefault();
             const formData = new FormData(newTaskForm);
-            projectManager.addToDo(formData.get("project-id"), formData.get("title"), formData.get("description"), formData.get("due-date"), formData.get("priority"));
-            newTaskForm.reset();
-            setTodaysDate();
-            updateTodoList(projectManager.projects);
+            if (formData.get("title") !== "") {
+                projectManager.addToDo(formData.get("project-id"), formData.get("title"), formData.get("description"), formData.get("due-date"), formData.get("priority"));
+                newTaskForm.reset();
+                setTodaysDate();
+                updateTodoList(projectManager.projects);
+            }
         });
     };
 
