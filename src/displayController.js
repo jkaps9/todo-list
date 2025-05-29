@@ -13,9 +13,9 @@ const displayController = (function () {
         }
     };
 
-    const updateProjectList = (projectArr) => {
+    const updateProjectList = () => {
         clearList(projectList);
-        projectArr.forEach(project => {
+        projectManager.projects.forEach(project => {
             const listItem = document.createElement("li");
             const button = document.createElement("button");
             button.classList.add("project-btn");
@@ -25,10 +25,10 @@ const displayController = (function () {
         });
     };
 
-    const updateTodoList = (projectArr) => {
+    const updateTodoList = () => {
         clearList(todoList);
 
-        projectArr.forEach(project => {
+        projectManager.projects.forEach(project => {
             if (project.items.length > 0) {
                 const header = document.createElement("h4");
                 header.textContent = project.name;
@@ -45,6 +45,7 @@ const displayController = (function () {
                         checkBox.classList.add("todo-isComplete");
                         checkBox.addEventListener('click', () => {
                             todo.toggleComplete();
+                            updateTodoList(projectManager.projects);
                         });
 
                         const title = document.createElement("p");
@@ -81,9 +82,9 @@ const displayController = (function () {
         date.value = `${year}-${month}-${day}`;
     };
 
-    const setFormProjects = (projectArr) => {
+    const setFormProjects = () => {
         clearList(formProjects);
-        projectArr.forEach(project => {
+        projectManager.projects.forEach(project => {
             const option = document.createElement("option");
             option.value = project.id;
             option.textContent = project.name;
@@ -105,7 +106,7 @@ const displayController = (function () {
         });
     };
 
-    const createTaskClick = (projectManager) => {
+    const createTaskClick = () => {
         const createTaskBtn = document.querySelector("#create-task");
         formSubmit(projectManager);
         createTaskBtn.addEventListener('click', (e) => {
@@ -113,7 +114,7 @@ const displayController = (function () {
         });
     };
 
-    const formSubmit = (projectManager) => {
+    const formSubmit = () => {
         newTaskForm.addEventListener("submit", (e) => {
             e.preventDefault();
             const formData = new FormData(newTaskForm);
@@ -124,12 +125,12 @@ const displayController = (function () {
         });
     };
 
-    const addProjectButtonClick = (projectManager) => {
+    const addProjectButtonClick = () => {
         const addProjectButton = document.querySelector("#add-project");
         addProjectButton.addEventListener('click', () => {
             const title = prompt("Project Title", "New Project");
             projectManager.createProject(title);
-            updateProjectList(projectManager.projects);
+            updateProjectList();
             setFormProjects(projectManager.projects);
         });
     };

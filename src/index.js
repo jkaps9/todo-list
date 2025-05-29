@@ -4,12 +4,12 @@ import projectManager from "./projectManager.js";
 
 // FORM FUNCTIONS
 displayController.setTodaysDate();
-displayController.setFormProjects(projectManager.projects);
+displayController.setFormProjects();
 displayController.closeButtonClick();
-displayController.createTaskClick(projectManager);
+displayController.createTaskClick();
 
 //Others
-displayController.updateProjectList(projectManager.projects);
-displayController.updateTodoList(projectManager.projects);
+displayController.updateProjectList();
+displayController.updateTodoList();
 displayController.addTaskButtonClick();
-displayController.addProjectButtonClick(projectManager);
+displayController.addProjectButtonClick();
