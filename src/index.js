@@ -1,7 +1,7 @@
 import "./styles.css";
-import { ToDo } from "./todo.js";
-import { Project } from "./project.js";
-import { displayController } from "./displayController.js";
+import ToDo from "./todo.js";
+import Project from "./project.js";
+import displayController from "./displayController.js";
 
 const projects = [];
 const defaultProject = new Project("My To Dos");

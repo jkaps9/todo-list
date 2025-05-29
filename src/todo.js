@@ -1,4 +1,4 @@
-export class ToDo {
+export default class ToDo {
     id = crypto.randomUUID();
 
     constructor(title, description, dueDate, priority) {

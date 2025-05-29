@@ -1,4 +1,4 @@
-export const displayController = (function () {
+const displayController = (function () {
     const projectList = document.querySelector("#project-list");
     const todoList = document.querySelector("#todo-list");
     const newTaskFormContainer = document.querySelector(".form-container");
@@ -102,3 +102,5 @@ export const displayController = (function () {
 
     return { updateProjectList, updateTodoList, setTodaysDate, setFormProjects, addTaskButtonClick, closeButtonClick };
 })();
+
+export default displayController;
