@@ -17,6 +17,11 @@ import displayController from "./displayController.js";
 const projectManager = (function () {
     const projects = [];
 
+    // Create a default project if projects is empty
+    if (projects.length === 0) {
+        projects.push(new Project("Default Project"));
+    }
+
     const getIndex = (arr, id) => {
         return arr.map(function (e) {
             return e.id;
@@ -54,6 +59,7 @@ const projectManager = (function () {
         }
     };
 
+    return { projects };
 })();
 
 export default projectManager;
