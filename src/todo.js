@@ -1,4 +1,6 @@
 export class ToDo {
+    id = crypto.randomUUID();
+
     constructor(title, description, dueDate, priority) {
         this.title = title;
         this.description = description;
