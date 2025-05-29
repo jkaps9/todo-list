@@ -95,6 +95,14 @@ div.todo-item {
     border-radius: 6px;
 }
 
+div.todo-item.priority-high {
+    border-color: red;
+}
+
+div.todo-item.priority-medium {
+    border-color: yellow;
+}
+
 .todo-isComplete {
     height: 1em;
     width: 1em;
