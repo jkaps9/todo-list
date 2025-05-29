@@ -1,5 +1,3 @@
-import { Project } from "./project";
-
 export const displayController = (function () {
     const projectList = document.querySelector("#project-list");
     const todoList = document.querySelector("#todo-list");
