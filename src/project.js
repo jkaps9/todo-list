@@ -1,4 +1,6 @@
 export default class Project {
+    id = crypto.randomUUID();
+
     constructor(name) {
         this.name = name;
         this.items = [];
