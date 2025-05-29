@@ -20,6 +20,9 @@ const displayController = (function () {
             const button = document.createElement("button");
             button.classList.add("project-btn");
             button.textContent = project.name;
+            button.addEventListener('click', () => {
+                updateTodoList(button.textContent);
+            });
             listItem.appendChild(button);
             projectList.appendChild(listItem);
         });
@@ -27,7 +30,7 @@ const displayController = (function () {
 
     const updateTodoList = (projectFilter = "") => {
         clearList(todoList);
-        const filteredProjects = projectFilter === "" ? projectManager.projects : projectManager.projects.filter((project) => project.title === projectFilter);
+        const filteredProjects = projectFilter === "" ? projectManager.projects : projectManager.projects.filter((project) => project.name === projectFilter);
 
         filteredProjects.forEach(project => {
 
