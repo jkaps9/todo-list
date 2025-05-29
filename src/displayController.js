@@ -155,6 +155,10 @@ const displayController = (function () {
         updateTodoList();
         addTaskButtonClick();
         addProjectButtonClick();
+        const allProjects = document.querySelector("#all-projects");
+        allProjects.addEventListener('click', () => {
+            updateTodoList();
+        });
     };
 
     const formSetup = () => {
