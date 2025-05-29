@@ -78,6 +78,10 @@ aside .project-btn:hover {
 }
 
 /* Main */
+main {
+    position: relative;
+}
+
 #section-1 {
     display: flex;
 }
@@ -125,4 +129,25 @@ div.todo-item.priority-medium {
 .todo-dueDate {
     font-size: 0.9rem;
     font-style: italic;
+}
+
+.form-container {
+    position: absolute;
+    top: 24px;
+    left: 8px;
+
+    background-color: white;
+    padding: 24px;
+}
+
+#new-task-form {
+    div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    input,
+    select {
+        width: 100%;
+    }
 }

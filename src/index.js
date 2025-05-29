@@ -6,8 +6,9 @@ import { displayController } from "./displayController.js";
 const projects = [];
 const defaultProject = new Project("My To Dos");
 projects.push(defaultProject);
-
 displayController.updateProjectList(projects);
+
+displayController.setTodaysDate();
 
 for (let i = 2; i <= 6; i++) {
     const newProj = new Project(`Project ${i}`);

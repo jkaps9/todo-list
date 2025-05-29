@@ -64,5 +64,16 @@ export const displayController = (function () {
         });
     };
 
-    return { updateProjectList, updateTodoList };
+    const setTodaysDate = () => {
+        const date = document.querySelector("#due-date");
+        const todaysDate = new Date();
+        let month = todaysDate.getMonth() < 9 ? `0` : ``;
+        month += `${todaysDate.getMonth() + 1}`;
+
+        const day = todaysDate.getDate();
+        const year = todaysDate.getFullYear();
+        date.value = `${year}-${month}-${day}`;
+    };
+
+    return { updateProjectList, updateTodoList, setTodaysDate };
 })();
