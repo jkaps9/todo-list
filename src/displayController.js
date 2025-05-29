@@ -20,38 +20,6 @@ export const displayController = (function () {
         });
     };
 
-    const makeTodoCard = (todo) => {
-        const toDoCard = document.createElement("div");
-        toDoCard.classList.add("todo-item");
-        toDoCard.classList.add(`priority-${todo.priority.toLowerCase()}`);
-
-        const checkBox = document.createElement("button");
-        checkBox.setAttribute("id", todo.id);
-        checkBox.classList.add("todo-isComplete");
-        checkBox.addEventListener('click', () => {
-            todo.toggleComplete();
-        });
-
-        const title = document.createElement("p");
-        title.classList.add("todo-title");
-        title.textContent = todo.title;
-
-        const dueDate = document.createElement("p");
-        dueDate.classList.add("todo-dueDate");
-
-        const month = todo.dueDate.getMonth() + 1;
-        const day = todo.dueDate.getDate();
-        const year = todo.dueDate.getFullYear();
-
-        dueDate.textContent = `${month}/${day}/${year}`;
-
-        toDoCard.appendChild(checkBox);
-        toDoCard.appendChild(title);
-        toDoCard.appendChild(dueDate);
-
-        return toDoCard;
-    };
-
     const updateTodoList = (projectArr) => {
         clearList(todoList);
 
@@ -61,8 +29,36 @@ export const displayController = (function () {
             todoList.appendChild(header);
 
             project.items.forEach(todo => {
-                const todoCard = makeTodoCard(todo);
-                todoList.appendChild(todoCard);
+                if (!todo.isComplete) {
+                    const toDoCard = document.createElement("div");
+                    toDoCard.classList.add("todo-item");
+                    toDoCard.classList.add(`priority-${todo.priority.toLowerCase()}`);
+
+                    const checkBox = document.createElement("button");
+                    checkBox.setAttribute("id", todo.id);
+                    checkBox.classList.add("todo-isComplete");
+                    checkBox.addEventListener('click', () => {
+                        todo.toggleComplete();
+                    });
+
+                    const title = document.createElement("p");
+                    title.classList.add("todo-title");
+                    title.textContent = todo.title;
+
+                    const dueDate = document.createElement("p");
+                    dueDate.classList.add("todo-dueDate");
+
+                    const month = todo.dueDate.getMonth() + 1;
+                    const day = todo.dueDate.getDate();
+                    const year = todo.dueDate.getFullYear();
+
+                    dueDate.textContent = `${month}/${day}/${year}`;
+
+                    toDoCard.appendChild(checkBox);
+                    toDoCard.appendChild(title);
+                    toDoCard.appendChild(dueDate);
+                    todoList.appendChild(toDoCard);
+                }
             });
 
         });
