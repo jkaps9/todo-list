@@ -30,6 +30,9 @@ export const displayController = (function () {
         const checkBox = document.createElement("button");
         checkBox.setAttribute("id", todo.id);
         checkBox.classList.add("todo-isComplete");
+        checkBox.addEventListener('click', () => {
+            todo.toggleComplete();
+        });
 
         const title = document.createElement("p");
         title.classList.add("todo-title");
