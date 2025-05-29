@@ -1,6 +1,7 @@
 export const displayController = (function () {
     const projectList = document.querySelector("#project-list");
     const todoList = document.querySelector("#todo-list");
+    const formProjects = document.querySelector("#project");
 
     const clearList = (list) => {
         while (list.firstChild) {
@@ -10,11 +11,11 @@ export const displayController = (function () {
 
     const updateProjectList = (projectArr) => {
         clearList(projectList);
-        projectArr.forEach(element => {
+        projectArr.forEach(project => {
             const listItem = document.createElement("li");
             const button = document.createElement("button");
             button.classList.add("project-btn");
-            button.textContent = element.name;
+            button.textContent = project.name;
             listItem.appendChild(button);
             projectList.appendChild(listItem);
         });
@@ -75,5 +76,14 @@ export const displayController = (function () {
         date.value = `${year}-${month}-${day}`;
     };
 
-    return { updateProjectList, updateTodoList, setTodaysDate };
+    const setFormProjects = (projectArr) => {
+        projectArr.forEach(project => {
+            const option = document.createElement("option");
+            option.value = project.name;
+            option.textContent = project.name;
+            formProjects.appendChild(option);
+        });
+    };
+
+    return { updateProjectList, updateTodoList, setTodaysDate, setFormProjects };
 })();

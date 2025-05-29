@@ -8,8 +8,6 @@ const defaultProject = new Project("My To Dos");
 projects.push(defaultProject);
 displayController.updateProjectList(projects);
 
-displayController.setTodaysDate();
-
 for (let i = 2; i <= 6; i++) {
     const newProj = new Project(`Project ${i}`);
     projects.push(newProj);
@@ -19,6 +17,10 @@ for (let i = 2; i <= 6; i++) {
         projects[i - 1].addItem(toDoItem);
     }
 }
+
+// FORM FUNCTIONS
+displayController.setTodaysDate();
+displayController.setFormProjects(projects);
 
 displayController.updateProjectList(projects);
 displayController.updateTodoList(projects);
