@@ -29,6 +29,10 @@ const displayController = (function () {
         clearList(todoList);
 
         projectManager.projects.forEach(project => {
+
+            const filteredItems = project.items.filter((item) => !item.isComplete);
+
+            console.log(filteredItems);
             if (project.items.length > 0) {
                 const header = document.createElement("h4");
                 header.textContent = project.name;
@@ -97,6 +101,7 @@ const displayController = (function () {
         addTaskButton.addEventListener('click', () => {
             formSetup();
             newTaskFormContainer.classList.remove("hidden");
+            document.querySelector("#title").focus();
         });
     };
 
