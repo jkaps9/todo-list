@@ -147,6 +147,11 @@ div.todo-item.priority-medium {
     appearance: none;
     background: none;
     border: 1px solid rgba(150, 150, 150, 0.5);
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 #close-form {
@@ -156,13 +161,13 @@ div.todo-item.priority-medium {
     padding: 0;
     border: none;
     font-weight: bold;
-    cursor: pointer;
 }
 
 #new-task-form {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    font-size: 1.2rem;
 
     div {
         display: grid;
@@ -170,12 +175,19 @@ div.todo-item.priority-medium {
         gap: 10px;
     }
 
+    input {
+        appearance: none;
+    }
+
     input,
     select {
         width: 175px;
-        appearance: none;
         background: none;
         border: 1px solid rgba(150, 150, 150, 0.5);
+    }
+
+    select {
+        cursor: pointer;
     }
 
     button {

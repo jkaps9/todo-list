@@ -3,16 +3,15 @@ import ToDo from "./todo.js";
 import displayController from "./displayController.js";
 
 //Project Manager has: 
-// 1. List of Projects
+// 1. List of Projects [implemented]
 
 //Project Manager can:
-// 1. Create projects
-// 2. Delete Projects
-// 3. Add ToDos to a project
-// 4. Remove ToDos from a project
+// 1. Create projects [implemented]
+// 2. Delete Projects [implemented]
+// 3. Add ToDos to a project [implemented]
+// 4. Remove ToDos from a project [implemented]
 // 5. Update project details
 // 6. Update ToDo details
-// 7. Tell the DOM to update
 
 const projectManager = (function () {
     const projects = [];
@@ -20,6 +19,13 @@ const projectManager = (function () {
     // Create a default project if projects is empty
     if (projects.length === 0) {
         projects.push(new Project("Default Project"));
+    }
+
+    // Create default todos for testing purposes
+    const rand = Math.floor(Math.random() * 3) + 1;
+    for (let j = 1; j < rand; j++) {
+        const toDoItem = new ToDo(`Task ${j}`, "Todo Description", new Date(2025, 4, 30), "High");
+        projects[0].addItem(toDoItem);
     }
 
     const getIndex = (arr, id) => {
