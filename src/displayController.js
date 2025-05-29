@@ -25,10 +25,11 @@ const displayController = (function () {
         });
     };
 
-    const updateTodoList = () => {
+    const updateTodoList = (projectFilter = "") => {
         clearList(todoList);
+        const filteredProjects = projectFilter === "" ? projectManager.projects : projectManager.projects.filter((project) => project.title === projectFilter);
 
-        projectManager.projects.forEach(project => {
+        filteredProjects.forEach(project => {
 
             const filteredItems = project.items.filter((item) => !item.isComplete);
             if (filteredItems.length > 0) {
@@ -47,7 +48,7 @@ const displayController = (function () {
                         checkBox.classList.add("todo-isComplete");
                         checkBox.addEventListener('click', () => {
                             todo.toggleComplete();
-                            updateTodoList(projectManager.projects);
+                            updateTodoList();
                         });
 
                         const title = document.createElement("p");
@@ -126,7 +127,8 @@ const displayController = (function () {
                 projectManager.addToDo(formData.get("project-id"), formData.get("title"), formData.get("description"), formData.get("due-date"), formData.get("priority"));
                 newTaskForm.reset();
                 setTodaysDate();
-                updateTodoList(projectManager.projects);
+                updateTodoList();
+                document.querySelector("#title").focus();
             }
         });
     };
@@ -137,8 +139,12 @@ const displayController = (function () {
             const title = prompt("Project Title", "New Project");
             projectManager.createProject(title);
             updateProjectList();
-            setFormProjects(projectManager.projects);
+            setFormProjects();
         });
+    };
+
+    const projectClick = () => {
+
     };
 
     const initialize = () => {
