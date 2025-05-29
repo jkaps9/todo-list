@@ -1,6 +1,7 @@
 export const displayController = (function () {
     const projectList = document.querySelector("#project-list");
     const todoList = document.querySelector("#todo-list");
+    const newTaskFormContainer = document.querySelector(".form-container");
     const formProjects = document.querySelector("#project");
 
     const clearList = (list) => {
@@ -85,5 +86,12 @@ export const displayController = (function () {
         });
     };
 
-    return { updateProjectList, updateTodoList, setTodaysDate, setFormProjects };
+    const addTaskButtonClick = () => {
+        const addTaskButton = document.querySelector("#add-task");
+        addTaskButton.addEventListener('click', () => {
+            newTaskFormContainer.classList.remove("hidden");
+        });
+    };
+
+    return { updateProjectList, updateTodoList, setTodaysDate, setFormProjects, addTaskButtonClick };
 })();

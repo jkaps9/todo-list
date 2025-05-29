@@ -24,3 +24,5 @@ displayController.setFormProjects(projects);
 
 displayController.updateProjectList(projects);
 displayController.updateTodoList(projects);
+
+displayController.addTaskButtonClick();
