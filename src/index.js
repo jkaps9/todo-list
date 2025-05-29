@@ -25,3 +25,6 @@ const projects = [];
 projects.push(defaultProject);
 
 displayController.clearProjectList();
+displayController.updateProjectList(projects);
+
+console.log(projects);
