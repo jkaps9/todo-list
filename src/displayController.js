@@ -95,6 +95,7 @@ const displayController = (function () {
     const addTaskButtonClick = () => {
         const addTaskButton = document.querySelector("#add-task");
         addTaskButton.addEventListener('click', () => {
+            formSetup();
             newTaskFormContainer.classList.remove("hidden");
         });
     };
@@ -142,7 +143,14 @@ const displayController = (function () {
         addProjectButtonClick();
     };
 
-    return { initialize, setTodaysDate, setFormProjects, closeButtonClick, createTaskClick };
+    const formSetup = () => {
+        setTodaysDate();
+        setFormProjects();
+        closeButtonClick();
+        createTaskClick();
+    };
+
+    return { initialize };
 })();
 
 export default displayController;

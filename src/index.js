@@ -3,9 +3,3 @@ import displayController from "./displayController.js";
 import projectManager from "./projectManager.js";
 
 displayController.initialize();
-
-// FORM FUNCTIONS
-displayController.setTodaysDate();
-displayController.setFormProjects();
-displayController.closeButtonClick();
-displayController.createTaskClick();
