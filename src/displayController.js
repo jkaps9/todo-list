@@ -3,14 +3,14 @@ import { Project } from "./project";
 export const displayController = (function () {
     const projectList = document.querySelector("#project-list");
 
-    const clearProjectList = () => {
-        while (projectList.firstChild) {
-            projectList.removeChild(projectList.lastChild);
+    const clearList = (list) => {
+        while (list.firstChild) {
+            list.removeChild(list.lastChild);
         }
     };
 
     const updateProjectList = (arr) => {
-        clearProjectList();
+        clearList(projectList);
         arr.forEach(element => {
             const listItem = document.createElement("li");
             const button = document.createElement("button");
@@ -41,5 +41,9 @@ export const displayController = (function () {
         return toDoCard;
     };
 
-    return { clearProjectList, updateProjectList };
+    const updateTodoList = (projects) => {
+
+    };
+
+    return { updateProjectList, updateTodoList };
 })();
