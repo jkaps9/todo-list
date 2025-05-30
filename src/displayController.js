@@ -151,10 +151,6 @@ const displayController = (function () {
         });
     };
 
-    const projectClick = () => {
-
-    };
-
     const initialize = () => {
         updateProjectList();
         updateTodoList();
@@ -192,14 +188,16 @@ const displayController = (function () {
         todoDetailFormContainer.querySelector("#todo-priority").value = todo.priority;
 
         const updateButton = document.querySelector("#update-todo");
+        updateButton.setAttribute("data-id", todo.id);
         updateButton.addEventListener('click', () => {
             const newTitle = todoDetailFormContainer.querySelector("#todo-title").value;
             const newDescription = todoDetailFormContainer.querySelector("#todo-description").value;
             const dueDt = todoDetailFormContainer.querySelector("#todo-due-date").value;
             const newDueDate = new Date(Number(dueDt.slice(0, 4)), Number(dueDt.slice(5, 7)) - 1, Number(dueDt.slice(8, 10)));
             const newPriority = todoDetailFormContainer.querySelector("#todo-priority").value;
-            projectManager.updateToDo(todo.id, newTitle, newDescription, newDueDate, newPriority);
+            projectManager.updateToDo(updateButton.getAttribute("data-id"), newTitle, newDescription, newDueDate, newPriority);
             updateTodoList();
+            todoDetailFormContainer.classList.add("hidden");
         });
     };
 

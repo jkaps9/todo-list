@@ -43,6 +43,7 @@ const projectManager = (function () {
         if (index !== -1) {
             const dueDt = new Date(Number(dueDate.slice(0, 4)), Number(dueDate.slice(5, 7)) - 1, Number(dueDate.slice(8, 10)));
             projects[index].addItem(new ToDo(title, description, dueDt, priority));
+            logProjects();
         } else {
             console.log(`Project with ID ${projectID} does not exist.`);
         }
