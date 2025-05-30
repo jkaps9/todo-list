@@ -134,12 +134,14 @@ const displayController = (function () {
         newTaskForm.addEventListener("submit", (e) => {
             e.preventDefault();
             const formData = new FormData(newTaskForm);
-            if (formData.get("title") !== "") {
+            if (formData.get("title").trim().length !== 0) {
                 projectManager.addToDo(formData.get("project-id"), formData.get("title"), formData.get("description"), formData.get("due-date"), formData.get("priority"));
                 newTaskForm.reset();
                 setTodaysDate();
                 updateTodoList();
                 document.querySelector("#title").focus();
+            } else {
+                alert("Can't have a blank title");
             }
         });
     };
@@ -195,13 +197,17 @@ const displayController = (function () {
         updateButton.setAttribute("data-id", todo.id);
         updateButton.addEventListener('click', () => {
             const newTitle = todoDetailFormContainer.querySelector("#todo-title").value;
-            const newDescription = todoDetailFormContainer.querySelector("#todo-description").value;
-            const dueDt = todoDetailFormContainer.querySelector("#todo-due-date").value;
-            const newDueDate = new Date(Number(dueDt.slice(0, 4)), Number(dueDt.slice(5, 7)) - 1, Number(dueDt.slice(8, 10)));
-            const newPriority = todoDetailFormContainer.querySelector("#todo-priority").value;
-            projectManager.updateToDo(updateButton.getAttribute("data-id"), newTitle, newDescription, newDueDate, newPriority);
-            updateTodoList();
-            todoDetailFormContainer.classList.add("hidden");
+            if (newTitle.trim().length !== 0) {
+                const newDescription = todoDetailFormContainer.querySelector("#todo-description").value;
+                const dueDt = todoDetailFormContainer.querySelector("#todo-due-date").value;
+                const newDueDate = new Date(Number(dueDt.slice(0, 4)), Number(dueDt.slice(5, 7)) - 1, Number(dueDt.slice(8, 10)));
+                const newPriority = todoDetailFormContainer.querySelector("#todo-priority").value;
+                projectManager.updateToDo(updateButton.getAttribute("data-id"), newTitle, newDescription, newDueDate, newPriority);
+                updateTodoList();
+                todoDetailFormContainer.classList.add("hidden");
+            } else {
+                alert("can't have blank title");
+            }
         });
     };
 
