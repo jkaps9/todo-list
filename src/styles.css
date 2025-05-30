@@ -149,6 +149,7 @@ div.todo-item.priority-medium {
 
 .todo-title {
     margin-right: 24px;
+    cursor: pointer;
 }
 
 .todo-dueDate {

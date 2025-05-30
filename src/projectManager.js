@@ -73,6 +73,10 @@ const projectManager = (function () {
         }
     };
 
+    const logProjects = () => {
+        console.log(JSON.stringify(projects));
+    };
+
     return { projects, addToDo, createProject, updateToDo };
 })();
 
