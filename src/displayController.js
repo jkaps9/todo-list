@@ -21,9 +21,10 @@ const displayController = (function () {
             const listItem = document.createElement("li");
             const button = document.createElement("button");
             button.classList.add("project-btn");
+            button.setAttribute("data-id", project.id);
             button.textContent = project.name;
             button.addEventListener('click', () => {
-                updateTodoList(button.textContent);
+                updateTodoList(button.getAttribute("data-id"));
             });
             listItem.appendChild(button);
             projectList.appendChild(listItem);
@@ -32,7 +33,7 @@ const displayController = (function () {
 
     const updateTodoList = (projectFilter = "") => {
         clearList(todoList);
-        const filteredProjects = projectFilter === "" ? projectManager.projects : projectManager.projects.filter((project) => project.name === projectFilter);
+        const filteredProjects = projectFilter === "" ? projectManager.projects : projectManager.projects.filter((project) => project.id === projectFilter);
 
         filteredProjects.forEach(project => {
 
@@ -88,7 +89,9 @@ const displayController = (function () {
         let month = todaysDate.getMonth() < 9 ? `0` : ``;
         month += `${todaysDate.getMonth() + 1}`;
 
-        const day = todaysDate.getDate();
+        let day = todaysDate.getDate() < 9 ? `0` : ``;
+        day += `${todaysDate.getDate()}`;
+
         const year = todaysDate.getFullYear();
         date.value = `${year}-${month}-${day}`;
     };
@@ -181,7 +184,8 @@ const displayController = (function () {
         const dueDate = todo.dueDate;
         let month = dueDate.getMonth() < 9 ? `0` : ``;
         month += `${dueDate.getMonth() + 1}`;
-        const day = dueDate.getDate();
+        let day = dueDate.getDate() < 9 ? `0` : ``;
+        day += `${dueDate.getDate()}`;
         const year = dueDate.getFullYear();
         todoDetailFormContainer.querySelector("#todo-due-date").value = `${year}-${month}-${day}`;
 
