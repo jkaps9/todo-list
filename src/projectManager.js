@@ -73,13 +73,15 @@ const projectManager = (function () {
 
     const getProjectsFromStorage = () => {
         let projectString = localStorage.getItem("projects");
-        let projectObjects = JSON.parse(projectString);
-        console.log(projectObjects);
-        for (let i = 0; i < projectObjects.length; i++) {
-            createProject(projectObjects[i].name);
-            if (projectObjects[i].items.length > 0) {
-                for (let j = 0; j < projectObjects[i].items.length; j++) {
-                    addToDo(projects[i].id, projectObjects[i].items[j].title, projectObjects[i].items[j].description, projectObjects[i].items[j].dueDate, projectObjects[i].items[j].priority);
+        if (projectString !== null) {
+            let projectObjects = JSON.parse(projectString);
+            console.log(projectObjects);
+            for (let i = 0; i < projectObjects.length; i++) {
+                createProject(projectObjects[i].name);
+                if (projectObjects[i].items.length > 0) {
+                    for (let j = 0; j < projectObjects[i].items.length; j++) {
+                        addToDo(projects[i].id, projectObjects[i].items[j].title, projectObjects[i].items[j].description, projectObjects[i].items[j].dueDate, projectObjects[i].items[j].priority);
+                    }
                 }
             }
         }
