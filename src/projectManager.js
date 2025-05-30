@@ -16,11 +16,6 @@ import displayController from "./displayController.js";
 const projectManager = (function () {
     const projects = [];
 
-    // Create a default project if projects is empty
-    if (projects.length === 0) {
-        projects.push(new Project("My Tasks"));
-    }
-
     const getIndex = (arr, id) => {
         return arr.map(function (e) {
             return e.id;
@@ -29,6 +24,7 @@ const projectManager = (function () {
 
     const createProject = (title) => {
         projects.push(new Project(title));
+        addProjectsToStorage();
     };
 
     const removeProject = (projectID) => {
@@ -46,6 +42,7 @@ const projectManager = (function () {
         } else {
             console.log(`Project with ID ${projectID} does not exist.`);
         }
+        addProjectsToStorage();
     };
 
     const removeToDo = (projectID, todoID) => {
@@ -71,11 +68,33 @@ const projectManager = (function () {
                 break;
             }
         }
+        addProjectsToStorage();
     };
 
-    const logProjects = () => {
-        console.log(JSON.stringify(projects));
+    const getProjectsFromStorage = () => {
+        let projectString = localStorage.getItem("projects");
+        let projectObjects = JSON.parse(projectString);
+        console.log(projectObjects);
+        for (let i = 0; i < projectObjects.length; i++) {
+            createProject(projectObjects[i].name);
+            if (projectObjects[i].items.length > 0) {
+                for (let j = 0; j < projectObjects[i].items.length; j++) {
+                    addToDo(projects[i].id, projectObjects[i].items[j].title, projectObjects[i].items[j].description, projectObjects[i].items[j].dueDate, projectObjects[i].items[j].priority);
+                }
+            }
+        }
     };
+
+    const addProjectsToStorage = () => {
+        localStorage.setItem("projects", JSON.stringify(projects));
+    };
+
+    getProjectsFromStorage();
+
+    // Create a default project if projects is empty
+    if (projects.length === 0) {
+        createProject("My Tasks");
+    }
 
     return { projects, addToDo, createProject, updateToDo };
 })();
